@@ -5,6 +5,8 @@ import {TopBarLogo, TabBarBackground} from "../../components/navigation";
 import { tabs } from "../../constants/tabs";
 import { AppIcon } from "../../components/theme";
 
+import { Fonts } from "../../constants/typography"
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const TAB_WIDTH = SCREEN_WIDTH * 0.80;
 const TAB_MARGIN = (SCREEN_WIDTH - TAB_WIDTH) / 2;
@@ -34,8 +36,8 @@ export default function DashboardLayout() {
           bottom: 20,
           width: TAB_WIDTH,
           marginLeft: TAB_MARGIN,
-          height: 65,
-           backgroundColor: "transparent",
+          height: 68,
+          backgroundColor: "transparent",
           borderRadius: 36,
           borderWidth: 1,
           shadowColor: "#000",
@@ -55,7 +57,7 @@ export default function DashboardLayout() {
 
         tabBarLabelStyle: {
           fontSize: 9,
-          fontWeight: "500",
+           fontFamily: Fonts.medium,
           marginTop: 2,
         },
 
@@ -64,7 +66,7 @@ export default function DashboardLayout() {
         },
 
         tabBarIconStyle: {
-          marginTop: 2,
+          marginTop: 4,
         },
       }}
     >

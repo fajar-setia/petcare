@@ -10,7 +10,6 @@ import {
 } from "react-native-safe-area-context";
 
 import { useTheme } from "../../providers/ThemeProvider";
-import { ThemedStatusBar } from "./ThemedStatusBar";
 
 type Props = ScrollViewProps & {
   edges?: Edge[];
@@ -34,7 +33,6 @@ export function Screen({
         },
       ]}
     >
-      <ThemedStatusBar />
       <ScrollView
         {...props}
         keyboardShouldPersistTaps="handled"

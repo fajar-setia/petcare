@@ -2,6 +2,8 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../providers/ThemeProvider";
 import { AppText, AppView } from "../theme";
 
+import { Fonts } from "../../constants/typography";
+
 type TopBarLogoProps = {
   title?: string;
   subtitle?: string;
@@ -63,11 +65,11 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 18,
-    fontWeight: "700",
+    fontFamily: Fonts.brandBold,
   },
 
   subtitle: {
     fontSize: 14,
-    fontWeight: "500",
+    fontFamily: Fonts.brandMedium,
   },
 });

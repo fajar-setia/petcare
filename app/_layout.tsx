@@ -5,6 +5,22 @@ import {
   DefaultTheme,
 } from "expo-router";
 import { ThemeProvider, useTheme } from "../providers/ThemeProvider";
+import { ThemedStatusBar } from "../components/theme/ThemedStatusBar";
+
+import { useFonts } from "expo-font";
+
+import {
+  Fredoka_500Medium,
+  Fredoka_600SemiBold,
+  Fredoka_700Bold,
+} from "@expo-google-fonts/fredoka";
+
+import {
+  Nunito_400Regular,
+  Nunito_500Medium,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+} from "@expo-google-fonts/nunito";
 
 function Navigation() {
   const { colors, isDark } = useTheme();
@@ -23,6 +39,7 @@ function Navigation() {
         },
       }}
     >
+      <ThemedStatusBar />
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: colors.surface },
@@ -37,6 +54,20 @@ function Navigation() {
   );
 }
 export default function RootLayout() {
+    const [fontsLoaded] = useFonts({
+    Fredoka_500Medium,
+    Fredoka_600SemiBold,
+    Fredoka_700Bold,
+
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <ThemeProvider>
       <Navigation />
