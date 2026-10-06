@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { useTheme } from "../../providers/ThemeProvider";
 import { AppText, AppView } from "../theme";
 
@@ -65,11 +65,13 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 18,
+    lineHeight: 24,
     fontFamily: Fonts.brandBold,
   },
 
   subtitle: {
     fontSize: 14,
+    lineHeight: 20,
     fontFamily: Fonts.brandMedium,
   },
 });

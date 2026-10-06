@@ -6,6 +6,7 @@ import {
 } from "expo-router";
 import { ThemeProvider, useTheme } from "../providers/ThemeProvider";
 import { ThemedStatusBar } from "../components/theme/ThemedStatusBar";
+import { Platform } from "react-native";
 
 import { useFonts } from "expo-font";
 
@@ -42,6 +43,11 @@ function Navigation() {
       <ThemedStatusBar />
       <Stack
         screenOptions={{
+          // Native screens mengelola status bar sepanjang transisi Android.
+          ...(Platform.OS === "android" && {
+            statusBarStyle: isDark ? "light" : "dark",
+            statusBarHidden: false,
+          }),
           headerStyle: { backgroundColor: colors.surface },
           headerTintColor: colors.text,
           contentStyle: { backgroundColor: colors.background },

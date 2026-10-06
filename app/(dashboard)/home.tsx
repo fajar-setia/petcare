@@ -1,25 +1,41 @@
-import { useRouter } from "expo-router";
-import { AppText, Button, Card, Screen, Spacer } from "../../components/theme";
+import { owner, pets, appointment } from "../../constants/homeData";
+import { StyleSheet, } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Screen } from "../../components/theme";
+import { useTheme } from "../../providers/ThemeProvider";
+import { TextHeader, HealthStatusCard, PetSection, QuickActions, RoutineCard, AppointmentCard, EducationSection } from "../../components/home";
 
 export default function HomePage() {
-  const router = useRouter();
+  const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
+
   return (
-    <Screen edges={["left", "right"]}>
-      <AppText variant="title">Halo, pencinta hewan!</AppText>
-      <Spacer size={8} />
-      <AppText color="muted">Selamat datang di dashboard PawCare.</AppText>
-      <Spacer size={24} />
-      <Card>
-        <AppText variant="subtitle">Perawatan hari ini</AppText>
-        <AppText>
-          Pastikan hewanmu mendapat makanan, air bersih, dan waktu bermain.
-        </AppText>
-      </Card>
-      <Spacer size={24} />
-      <Button
-        title="Buka Profil"
-        onPress={() => router.navigate("/(dashboard)/profile")}
-      />
+    <Screen
+      edges={["left", "right"]}
+      style={{ backgroundColor: colors.background }}
+      contentContainerStyle={[
+        styles.content,
+        { paddingBottom: insets.bottom + 109 },
+      ]}
+    >
+      <TextHeader name={owner.firstName} petNames={pets.map((pet) => pet.name).join(" & ")} />
+
+      <HealthStatusCard />
+
+      <PetSection />
+
+      <QuickActions />
+
+      <RoutineCard />
+
+      <AppointmentCard appointment={appointment} />
+
+      <EducationSection />
+
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  content: { paddingHorizontal: 20, paddingTop: 10 },
+});

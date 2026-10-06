@@ -7,6 +7,7 @@
     "@expo-google-fonts/nunito": "^0.4.2",
     "@expo/material-symbols": "^0.1.1",
     "@expo/ui": "~57.0.21",
+    "@react-navigation/bottom-tabs": "^7.20.0",
     "expo": "~57.0.26",
     "expo-blur": "~57.0.3",
     "expo-constants": "~57.0.20",

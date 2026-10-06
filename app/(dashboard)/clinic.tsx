@@ -1,18 +1,18 @@
 import { AppText, Card, Screen, Spacer } from "../../components/theme";
 
-export default function CarePage() {
+export default function ClinicPage() {
   return (
     <Screen edges={["left", "right"]}>
-      <AppText variant="title">Perawatan Hewan</AppText>
+      <AppText variant="title">Klinik Hewan</AppText>
       <Spacer size={8} />
       <AppText color="muted">
-        Di sini kamu bisa menemukan tips dan panduan perawatan hewan peliharaanmu.
+        Temukan layanan klinik dan konsultasi untuk kesehatan hewan peliharaanmu.
       </AppText>
       <Spacer size={24} />
       <Card>
-        <AppText variant="subtitle">Tips Perawatan</AppText>
+        <AppText variant="subtitle">Layanan Klinik</AppText>
         <AppText>
-          Pastikan hewanmu mendapat makanan yang sesuai, air bersih, dan waktu bermain.
+          Konsultasi dokter hewan, pemeriksaan rutin, dan vaksinasi. Fitur pencarian klinik akan segera tersedia.
         </AppText>
       </Card>
     </Screen>
