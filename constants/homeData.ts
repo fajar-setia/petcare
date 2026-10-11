@@ -52,7 +52,8 @@ export const articles: Article[] = [
 
 export type Pet = (typeof pets)[number];
 
-export const owner = { name: "Sarah Azzahra", firstName: "Sarah" };
+export const owner = { name: "Sarah Azzahra", firstName: "Sarah",
+  photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=240&auto=format&fit=crop&q=80" };
 
 export const appointment = {
   time: "Besok, 10:00 WIB",

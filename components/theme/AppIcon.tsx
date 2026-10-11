@@ -1,12 +1,81 @@
+import { AppView } from "./AppView";
 import { Host, Icon } from "@expo/ui";
 import {
-  View,
   type ColorValue,
   type StyleProp,
   type ViewStyle,
 } from "react-native";
 
 const icons = {
+  bell: Icon.select({
+    ios: "bell",
+    android: import("@expo/material-symbols/notifications.xml"),
+  }),
+  mail: Icon.select({
+    ios: "envelope",
+    android: import("@expo/material-symbols/mail.xml"),
+  }),
+  phone: Icon.select({
+    ios: "phone",
+    android: import("@expo/material-symbols/call.xml"),
+  }),
+  paw: Icon.select({
+    ios: "pawprint.fill",
+    android: import("@expo/material-symbols/pets.xml"),
+  }),
+  badge: Icon.select({
+    ios: "checkmark.seal",
+    android: import("@expo/material-symbols/verified.xml"),
+  }),
+  shield: Icon.select({
+    ios: "cross.case",
+    android: import("@expo/material-symbols/health_and_safety.xml"),
+  }),
+  wallet: Icon.select({
+    ios: "wallet.bifold",
+    android: import("@expo/material-symbols/account_balance_wallet.xml"),
+  }),
+  support: Icon.select({
+    ios: "headphones",
+    android: import("@expo/material-symbols/support_agent.xml"),
+  }),
+  community: Icon.select({
+    ios: "person.3",
+    android: import("@expo/material-symbols/groups.xml"),
+  }),
+  privacy: Icon.select({
+    ios: "lock.shield",
+    android: import("@expo/material-symbols/lock.xml"),
+  }),
+  logout: Icon.select({
+    ios: "rectangle.portrait.and.arrow.right",
+    android: import("@expo/material-symbols/logout.xml"),
+  }),
+  add: Icon.select({
+    ios: "plus.circle",
+    android: import("@expo/material-symbols/add_circle.xml"),
+  }),
+  contact: Icon.select({
+    ios: "person.text.rectangle",
+    android: import("@expo/material-symbols/contact_emergency.xml"),
+  }),
+  leaf: Icon.select({
+    ios: "leaf",
+    android: import("@expo/material-symbols/spa.xml"),
+  }),
+  star: Icon.select({
+    ios: "star",
+    android: import("@expo/material-symbols/star.xml"),
+  }),
+  heart: Icon.select({
+    ios: "heart",
+    android: import("@expo/material-symbols/favorite.xml"),
+  }),
+  chevron: Icon.select({
+    ios: "chevron.right",
+    android: import("@expo/material-symbols/chevron_right.xml"),
+  }),
+
   home: Icon.select({
     ios: "house.fill",
     android: import("@expo/material-symbols/home.xml"),
@@ -81,7 +150,7 @@ export function AppIcon({
   style,
 }: Props) {
   return (
-     <View style={style}>
+     <AppView style={style}>
       <Host matchContents>
         <Icon
           name={icons[name]}
@@ -89,6 +158,6 @@ export function AppIcon({
           color={color}
         />
       </Host>
-    </View>
+    </AppView>
   );
 }

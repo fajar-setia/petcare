@@ -1,3 +1,4 @@
+import { HeaderActions } from "../../components/navigation/HeaderActions";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -7,7 +8,7 @@ import { tabs } from "../../constants/tabs";
 import { useTheme } from "../../providers/ThemeProvider";
 
 export default function DashboardLayout() {
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -20,10 +21,12 @@ export default function DashboardLayout() {
         headerStatusBarHeight: insets.top,
         headerStyle: {
           height: insets.top + 60,
-          backgroundColor: colors.surface,
+          backgroundColor: isDark ? colors.background : "#F4FBF2",
         },
 
         headerTintColor: colors.text,
+        headerShadowVisible: false,
+        headerRight: () => <HeaderActions />,
 
         headerLeftContainerStyle: {
           paddingLeft: Math.max(insets.left, 20),

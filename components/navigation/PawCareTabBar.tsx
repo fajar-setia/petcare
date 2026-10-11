@@ -1,6 +1,7 @@
+import { AppView } from "../theme/AppView";
 import { Tabs } from "expo-router";
 import type { ComponentProps } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import { useTheme } from "../../providers/ThemeProvider";
 import { AppIcon, AppText } from "../theme";
@@ -22,7 +23,7 @@ export function PawCareTabBar({
   const { colors } = useTheme();
 
   return (
-    <View
+    <AppView
       style={[
         styles.container,
         {
@@ -108,7 +109,7 @@ export function PawCareTabBar({
           </Pressable>
         );
       })}
-    </View>
+    </AppView>
   );
 }
 

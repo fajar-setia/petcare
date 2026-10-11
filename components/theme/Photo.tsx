@@ -8,6 +8,8 @@ type PhotoProps = {
   uri: string;
   label: string;
   wide?: boolean;
+  size?: number;
+  rounded?: boolean;
 };
 
 export function Photo(props: PhotoProps) {
@@ -18,6 +20,8 @@ function PhotoContent({
   uri,
   label,
   wide = false,
+  size = 58,
+  rounded = true,
 }: PhotoProps) {
   const [failed, setFailed] = useState(false);
   const { colors } = useTheme();
@@ -25,7 +29,7 @@ function PhotoContent({
   return (
     <AppView
       style={[
-        wide ? styles.articlePhoto : styles.avatar,
+        wide ? styles.articlePhoto : [styles.avatar, { width: size, height: size, borderRadius: rounded ? size / 2 : 16 }],
         { backgroundColor: colors.accentSoft },
       ]}
     >
