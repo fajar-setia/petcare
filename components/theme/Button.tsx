@@ -1,13 +1,14 @@
 import { Pressable, type PressableProps } from "react-native";
 import { AppText } from "./AppText";
 import { useTheme } from "../../providers/ThemeProvider";
+import { type ReactNode } from "react";
 
 type Props = Omit<PressableProps, "children"> & {
-  title: string;
-  variant?: "primary" | "secondary" | "outline";
-};
+  variant?: "primary" | "secondary" | "outline" | "plain";
+} & ({ title: string; children?: never } | { title?: never; children: ReactNode });
 export function Button({
   title,
+  children,
   variant = "primary",
   disabled,
   style,
@@ -15,7 +16,7 @@ export function Button({
 }: Props) {
   const { colors } = useTheme();
   const backgroundColor =
-    variant === "outline" ? "transparent" : colors[variant];
+    variant === "outline" || variant === "plain" ? "transparent" : colors[variant];
   const color =
     variant === "primary"
       ? colors.onPrimary
@@ -25,7 +26,7 @@ export function Button({
   return (
     <Pressable
       {...props}
-      accessibilityRole="button"
+      accessibilityRole={props.accessibilityRole ?? "button"}
       disabled={disabled}
       accessibilityState={{ ...props.accessibilityState, disabled: !!disabled }}
       style={(state) => [
@@ -41,12 +42,21 @@ export function Button({
           justifyContent: "center",
           opacity: disabled ? 0.45 : state.pressed ? 0.75 : 1,
         },
+        variant === "plain" && {
+          borderWidth: 0,
+          borderRadius: 0,
+          paddingHorizontal: 0,
+          paddingVertical: 0,
+          minHeight: 0,
+          alignItems: "stretch",
+          justifyContent: "flex-start",
+        },
         typeof style === "function" ? style(state) : style,
       ]}
     >
-      <AppText style={{ color, fontWeight: "600", textAlign: "center" }}>
+      {children ?? <AppText style={{ color, fontWeight: "600", textAlign: "center" }}>
         {title}
-      </AppText>
+      </AppText>}
     </Pressable>
   );
 }

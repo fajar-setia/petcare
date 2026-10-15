@@ -1,21 +1,19 @@
 import { AppIcon, AppText, AppView, Photo, Card } from "../theme";
 import { StyleSheet } from "react-native";
 import type { Clinic } from "../../constants/clinicData";
-import {ClinicAction} from "./ClinicAction";
-import {useTheme} from "../../providers/ThemeProvider";
-import {showFeature} from "../../utils/feature"
-import {Fonts} from "../../constants/typography"
+import { ClinicAction } from "./ClinicAction";
+import { useTheme } from "../../providers/ThemeProvider";
+import { showFeature } from "../../utils/feature";
+import { Fonts } from "../../constants/typography";
+import { router } from "expo-router";
 
 type ClinicSectionProps = {
   clinics: Clinic[];
   onReset: () => void;
 };
 
-export function ClinicSection({
- clinics,
- onReset,
-}: ClinicSectionProps) {
-  const {colors, isDark} = useTheme();
+export function ClinicSection({ clinics, onReset }: ClinicSectionProps) {
+  const { colors, isDark } = useTheme();
 
   const surface = { backgroundColor: colors.surfaceRaised };
   const soft = { backgroundColor: colors.surface };
@@ -122,7 +120,16 @@ export function ClinicSection({
                   ? "Lihat Detail & Fasilitas"
                   : "Lihat Detail & Jadwal"
               }
-              onPress={() => showFeature(clinic.name)}
+              onPress={() => {
+                if (!clinic.id) {
+                  showFeature("Detail klinik belum tersedia");
+                  return;
+                }
+                router.push({
+                  pathname: "/clinics/[id]",
+                  params: {id: clinic.id},
+                })
+              }}
             />
           </AppView>
         </Card>
@@ -133,10 +140,7 @@ export function ClinicSection({
           <AppText color="muted" style={styles.description}>
             Coba kata kunci lain atau ubah kategori dan filter.
           </AppText>
-          <ClinicAction
-            title="Reset Pencarian"
-            onPress={onReset}
-          />
+          <ClinicAction title="Reset Pencarian" onPress={onReset} />
         </Card>
       )}
     </AppView>
@@ -172,4 +176,4 @@ const styles = StyleSheet.create({
   slot: { padding: 11, borderRadius: 13, alignItems: "center" },
   medium: { fontSize: 13, lineHeight: 19, fontFamily: Fonts.semiBold },
   description: { fontSize: 12, lineHeight: 18 },
-})
+});

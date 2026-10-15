@@ -15,7 +15,7 @@ export default function WelcomePage() {
         <Spacer size={24} />
         <Button
           title="Buka Dashboard"
-          onPress={() => router.push("/(dashboard)/home")}
+          onPress={() => router.push("/auth/login")}
         />
       </Card>
     </Screen>

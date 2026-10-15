@@ -35,7 +35,7 @@ export function TopBarLogo({
           {title}
         </AppText>
 
-        <AppText
+        {subtitle ? <AppText
           style={[
             styles.subtitle,
             {
@@ -44,7 +44,7 @@ export function TopBarLogo({
           ]}
         >
           {subtitle}
-        </AppText>
+        </AppText> : null}
       </AppView>
     </AppView>
   );

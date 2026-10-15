@@ -1,4 +1,5 @@
 export { AppView } from './AppView';
+export { AppInput } from './AppInput';
 export { AppText } from './AppText';
 export { Screen } from './Screen';
 export { Spacer } from './Spacer';

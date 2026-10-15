@@ -22,10 +22,16 @@ import {
   Nunito_600SemiBold,
   Nunito_700Bold,
 } from "@expo-google-fonts/nunito";
+import { AuthProvider, useAuth } from "../providers/AuthProvider";
 
 function Navigation() {
   const { colors, isDark } = useTheme();
+  const { isAuthenticated, loading } = useAuth();
   const baseTheme = isDark ? DarkTheme : DefaultTheme;
+
+  if (loading) {
+    return null;
+  }
   return (
     <NavigationThemeProvider
       value={{
@@ -41,9 +47,9 @@ function Navigation() {
       }}
     >
       <ThemedStatusBar />
+
       <Stack
         screenOptions={{
-          // Native screens mengelola status bar sepanjang transisi Android.
           ...(Platform.OS === "android" && {
             statusBarStyle: isDark ? "light" : "dark",
             statusBarHidden: false,
@@ -53,14 +59,25 @@ function Navigation() {
           contentStyle: { backgroundColor: colors.background },
         }}
       >
-        <Stack.Screen name="index" options={{headerShown: false, title: "PawCare" }} />
-        <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
+        <Stack.Protected guard={!loading && !isAuthenticated}>
+          <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+          <Stack.Screen name="auth/register" options={{ headerShown: false }} />
+        </Stack.Protected>
+
+        <Stack.Protected guard={!loading && isAuthenticated}>
+          <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
+        </Stack.Protected>
+
+        <Stack.Screen
+          name="index"
+          options={{ headerShown: false, title: "PawCare" }}
+        />
       </Stack>
     </NavigationThemeProvider>
   );
 }
 export default function RootLayout() {
-    const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Fredoka_500Medium,
     Fredoka_600SemiBold,
     Fredoka_700Bold,
@@ -76,7 +93,9 @@ export default function RootLayout() {
   }
   return (
     <ThemeProvider>
-      <Navigation />
+      <AuthProvider>
+        <Navigation />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

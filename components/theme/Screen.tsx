@@ -1,5 +1,7 @@
 import {
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   type ScrollViewProps,
 } from "react-native";
@@ -13,10 +15,12 @@ import { useTheme } from "../../providers/ThemeProvider";
 
 type Props = ScrollViewProps & {
   edges?: Edge[];
+  avoidKeyboard?: boolean;
 };
 
 export function Screen({
   edges = ["left", "right", "bottom"],
+  avoidKeyboard = false,
   style,
   contentContainerStyle,
   ...props
@@ -33,6 +37,11 @@ export function Screen({
         },
       ]}
     >
+      <KeyboardAvoidingView
+        style={styles.scrollView}
+        enabled={avoidKeyboard}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
       <ScrollView
         {...props}
         keyboardShouldPersistTaps="handled"
@@ -45,6 +54,7 @@ export function Screen({
           contentContainerStyle,
         ]}
       />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

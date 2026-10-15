@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, type ImageSourcePropType, type ImageResizeMode } from "react-native";
 import { AppText } from "./AppText";
 import { AppView } from "./AppView";
 import { useTheme } from "../../providers/ThemeProvider";
 
 type PhotoProps = {
-  uri: string;
+  uri?: string;
+  source?: ImageSourcePropType;
+  resizeMode?: ImageResizeMode;
   label: string;
   wide?: boolean;
   size?: number;
@@ -18,6 +20,8 @@ export function Photo(props: PhotoProps) {
 
 function PhotoContent({
   uri,
+  source,
+  resizeMode = "cover",
   label,
   wide = false,
   size = 58,
@@ -39,10 +43,10 @@ function PhotoContent({
         </AppText>
       ) : (
         <Image
-          source={{ uri }}
+          source={source ?? { uri }}
           accessibilityLabel={label}
           style={StyleSheet.absoluteFill}
-          resizeMode="cover"
+          resizeMode={resizeMode}
           onError={() => setFailed(true)}
         />
       )}

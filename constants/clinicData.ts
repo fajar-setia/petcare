@@ -18,6 +18,7 @@ export type Doctor = {
 };
 
 export type Clinic = {
+  id?: string;
   name: string;
   address: string;
   distance: string;
@@ -34,7 +35,7 @@ export type Clinic = {
 
 // Salin seluruh objek doctors dari kode lamamu
 export const doctors: Doctor[] = [
-   {
+  {
     name: "Drh. Anisa Wijaya",
     specialty: "Spesialis Kucing",
     clinic: "Klinik Satwa Bahagia Kemang",
